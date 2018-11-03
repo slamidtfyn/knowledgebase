@@ -1,0 +1,23 @@
+<div class='container-fluid'>
+  <div class="row ">
+    <div class='col-sm-4 col-sm-offset-4 text-center'>
+      <h2>Knowledgebase</h2>
+    </div>
+    <div>
+    </div>
+  </div>
+  <div class='row'>
+
+    <div class='col-sm-4 col-sm-offset-4 body-content'>
+      <input class="form-control" (keydown)="search($event)"  [(ngModel)]="searchValue">
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-sm-6 col-sm-offset-3'>
+      
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of searchValues">{{item}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
