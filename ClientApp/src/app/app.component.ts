@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  constructor(private http: HttpClient) {
+    http.get('/api/result').subscribe((p: string[]) => this.values = p);
+  }
   title = 'app';
   searchValue: any;
   values: string[] = [];
@@ -31,7 +35,7 @@ export class AppComponent {
             var searched = values.filter(p => p.match(element.trim()));
             console.log(searched);
             searched.forEach(s => {
-              if(result.indexOf(s)<0) result.push(s);
+              if (result.indexOf(s) < 0) result.push(s);
             });
           }
 
@@ -41,7 +45,7 @@ export class AppComponent {
       }
       else {
         console.log("add", this.searchValue);
-
+        this.http.put("/api/result/" + this.searchValue, null).subscribe();
         this.values.push(this.searchValue);
         this.searchValues = [this.searchValue];
         this.searchValue = "";
